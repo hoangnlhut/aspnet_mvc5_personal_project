@@ -1,0 +1,32 @@
+﻿@model IEnumerable<_1WelcomeApp.Models.Movie>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main aria-labelledby="title">
+
+    @if (Model.ToList().Count <= 0)
+    {
+        <h2 id="title">There is no any customers</h2>
+    }
+    else
+    {
+        <table class="table	table­‐bordered table­‐hover">
+            <thead>
+                <tr>
+                    <th>Movie</th>
+                </tr>
+            </thead>
+
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@movie.Name - @movie.Publisher </td>
+                </tr>
+            }
+        </table>
+    }
+</main>
+
+
