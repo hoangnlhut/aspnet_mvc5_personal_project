@@ -13,10 +13,10 @@ namespace _1WelcomeApp.Controllers
         //hard code fist, then we will use database
         private List<Customer> customers = new List<Customer>
         {
-            new Customer { Id = 1, Name = "Hoang", Address = "Viet Nam" },
-             new Customer { Id = 2, Name = "John", Address = "My" },
-              new Customer { Id = 3, Name = "Trang", Address = "Phu Tho" },
-               new Customer { Id = 4, Name = "Viet", Address = "Africa" },
+            new Customer { Id = 1, Name = "Hoang" },
+             new Customer { Id = 2, Name = "John"},
+              new Customer { Id = 3, Name = "Trang" },
+               new Customer { Id = 4, Name = "Viet" },
         };
 
         // GET: Customer
