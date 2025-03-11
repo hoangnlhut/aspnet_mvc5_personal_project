@@ -5,22 +5,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace _1WelcomeApp.Controllers
 {
     public class MovieController : Controller
     {
-        IEnumerable<Movie> movies = new List<Movie>()
+        private ApplicationDbContext _context;
+        public MovieController()
         {
-            new Movie(){ Id = 1, Name= "Phim 1", Publisher = "VN"},
-            new Movie(){ Id = 2, Name= "Phim 2", Publisher = "VN"},
-            new Movie(){ Id = 3, Name= "Phim 3", Publisher = "VN"},
-            new Movie(){ Id = 4, Name= "Phim 4", Publisher = "VN"},
+            _context = new ApplicationDbContext();
+        }
 
-        };
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
         // GET: Movie
         public ActionResult Index()
         {
+            var movies = _context.Movies.Include(x => x.Genre).ToList();
+
             return View(movies);
         }
 
@@ -52,14 +57,16 @@ namespace _1WelcomeApp.Controllers
 
         [Route("edit/{id:int}")]
 
-        public ActionResult Edit(int id = 10)
+        public ActionResult Edit(int id)
         {
-            //return Content("id=" + id);
-            ViewBag.MovieId = id;
+            var movie = _context.Movies.Include(x => x.Genre).SingleOrDefault(x => x.Id == id);
 
-            ViewData["trang"] = "Hoang";
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
 
-            return View();
+            return View(movie);
         }
 
         [Route("movie/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
