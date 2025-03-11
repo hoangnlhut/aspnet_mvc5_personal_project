@@ -2,6 +2,7 @@
 using _1WelcomeApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,21 +11,24 @@ namespace _1WelcomeApp.Controllers
 {
     public class CustomerController : Controller
     {
-        //hard code fist, then we will use database
-        private List<Customer> customers = new List<Customer>
+
+        private ApplicationDbContext _context;
+        public CustomerController()
         {
-            new Customer { Id = 1, Name = "Hoang" },
-             new Customer { Id = 2, Name = "John"},
-              new Customer { Id = 3, Name = "Trang" },
-               new Customer { Id = 4, Name = "Viet" },
-        };
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
 
         // GET: Customer
         public ActionResult Index()
         {
             CustomerViewModel viewModel = new CustomerViewModel
             {
-                Customers = customers
+                Customers = _context.Customers.ToList(),
             };
 
             return View(viewModel);
@@ -36,7 +40,10 @@ namespace _1WelcomeApp.Controllers
         {
             if (id == null) return HttpNotFound();
 
-            var customer = customers.SingleOrDefault(c => c.Id == id);
+            var customer = 
+                _context.Customers
+                .Include(c => c.MembershipType)
+                .SingleOrDefault(c => c.Id == id);
 
             if (customer == null) return HttpNotFound();
 
