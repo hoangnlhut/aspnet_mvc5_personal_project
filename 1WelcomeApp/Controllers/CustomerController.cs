@@ -38,8 +38,6 @@ namespace _1WelcomeApp.Controllers
         [Route("customer/edit/{id:int}")]
         public ActionResult Edit(int? id)
         {
-            if (id == null) return HttpNotFound();
-
             var customer = 
                 _context.Customers
                 .Include(c => c.MembershipType)
