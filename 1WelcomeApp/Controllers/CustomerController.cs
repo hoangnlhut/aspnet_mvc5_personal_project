@@ -28,7 +28,7 @@ namespace _1WelcomeApp.Controllers
         {
             CustomerViewModel viewModel = new CustomerViewModel
             {
-                Customers = _context.Customers.ToList(),
+                Customers = _context.Customers.Include(c => c.MembershipType).ToList(),
             };
 
             return View(viewModel);

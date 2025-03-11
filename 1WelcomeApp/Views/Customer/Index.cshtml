@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <th>Customer</th>
+                    <th>Membership Type</th>
                 </tr>
             </thead>
 
@@ -27,6 +28,15 @@
                         <a href="@Url.Action("Edit", "Customer", new { id = customer.Id })">@customer.Name</a>
                         @*@Html.ActionLink(@customer.Name, "Edit", "Customer", new { id = customer.Id }, null)*@
                     </td>
+
+                    @if (customer.MembershipType != null)
+                    {
+                       <td>@customer.MembershipType.Name</td>
+                    }
+                    else
+                    {
+                        <td>Unknown</td>
+                    }
                 </tr>
             }
         </table>
