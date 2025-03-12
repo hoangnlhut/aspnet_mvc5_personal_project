@@ -48,6 +48,11 @@ namespace _1WelcomeApp.Controllers
             return View(customer);
         }
 
+        
+        public ActionResult New()
+        {
+            return View();
+        }
 
         //// POST: Customer/Create
         //[HttpPost]
