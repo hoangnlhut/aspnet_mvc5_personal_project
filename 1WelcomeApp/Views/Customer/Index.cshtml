@@ -1,11 +1,13 @@
-﻿
-@model _1WelcomeApp.ViewModels.CustomerViewModel
+﻿@model _1WelcomeApp.ViewModels.CustomerViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <main aria-labelledby="title">
+    <div>
+        <a href="@Url.Action("New", "Customer")" class="btn btn-primary">Add New Customer</a>
+    </div>
 
     @if (Model.Customers.Count <= 0)
     {
@@ -13,7 +15,7 @@
     }
     else
     {
-        <table class="table	table­‐bordered table­‐hover">
+        <table class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Customer</th>
@@ -26,7 +28,6 @@
                 <tr>
                     <td>
                         <a href="@Url.Action("Edit", "Customer", new { id = customer.Id })">@customer.Name</a>
-                        @*@Html.ActionLink(@customer.Name, "Edit", "Customer", new { id = customer.Id }, null)*@
                     </td>
 
                     @if (customer.MembershipType != null)
@@ -42,4 +43,3 @@
         </table>
     }
 </main>
-

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace _1WelcomeApp.Models
 {
-    public class NewCustomerViewModel
+    public class CustomerFormViewModel
     {
         public IEnumerable<MembershipType> MembershipTypes { get; set; }
 

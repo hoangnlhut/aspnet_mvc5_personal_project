@@ -22,6 +22,7 @@ namespace _1WelcomeApp.Models
         public byte MembershipTypeId { get; set; }
 
         [Display(Name = "Date of Birth")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? Birthdate { get; set; }
     }
 }

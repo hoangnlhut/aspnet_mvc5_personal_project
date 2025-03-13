@@ -1,4 +1,4 @@
-﻿@model  _1WelcomeApp.Models.NewCustomerViewModel
+﻿@model  _1WelcomeApp.Models.CustomerFormViewModel
 @{
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,13 +9,16 @@
 @using (Html.BeginForm("Create", "Customer"))
 {
     <div class="form-group">
+        @Html.HiddenFor(m => m.Customer.Id)
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
     </div>
     <br />
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Birthdate)
-        @Html.TextBoxFor(m => m.Customer.Birthdate, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
     </div>
     <br />
     <div class="form-check">
@@ -28,7 +31,5 @@
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "dropdown-item" })
     </div>
+    <button type="submit" class="btn btn-primary">Save</button>
 }
-
-
-
