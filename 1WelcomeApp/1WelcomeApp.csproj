@@ -224,6 +224,10 @@
     <Compile Include="Migrations\202503110926448_PopulateDataMovie.Designer.cs">
       <DependentUpon>202503110926448_PopulateDataMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202503130936343_AddGenreIdInMovie.cs" />
+    <Compile Include="Migrations\202503130936343_AddGenreIdInMovie.Designer.cs">
+      <DependentUpon>202503130936343_AddGenreIdInMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ViewModel\AccountViewModels.cs" />
     <Compile Include="Models\Entities\Customer.cs" />
@@ -233,6 +237,7 @@
     <Compile Include="Models\Entities\MembershipType.cs" />
     <Compile Include="Models\Entities\Movie.cs" />
     <Compile Include="Models\ViewModel\CustomerFormViewModel.cs" />
+    <Compile Include="Models\ViewModel\MovieFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
@@ -383,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202503110926448_PopulateDataMovie.resx">
       <DependentUpon>202503110926448_PopulateDataMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202503130936343_AddGenreIdInMovie.resx">
+      <DependentUpon>202503130936343_AddGenreIdInMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
