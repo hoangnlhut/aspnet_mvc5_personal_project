@@ -20,47 +20,48 @@ namespace _1WelcomeApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //DbInterception.Add(new DatabaseLogger());
+            DbInterception.Add(new DatabaseLogger());
         }
 
     }
 
-    //public class DatabaseLogger : IDbCommandInterceptor
-    //{
-    //    public void NonQueryExecuting(DbCommand command, DbCommandInterceptionContext<int> interceptionContext)
-    //    {
-    //        LogQuery(command);
-    //    }
+    public class DatabaseLogger : IDbCommandInterceptor
+    {
+        public void NonQueryExecuting(DbCommand command, DbCommandInterceptionContext<int> interceptionContext)
+        {
+            LogQuery(command);
+        }
 
-    //    public void NonQueryExecuted(DbCommand command, DbCommandInterceptionContext<int> interceptionContext)
-    //    {
-    //        LogQuery(command);
-    //    }
+        public void NonQueryExecuted(DbCommand command, DbCommandInterceptionContext<int> interceptionContext)
+        {
+            LogQuery(command);
+        }
 
-    //    public void ReaderExecuting(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
-    //    {
-    //        LogQuery(command);
-    //    }
+        public void ReaderExecuting(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
+        {
+            LogQuery(command);
+        }
 
-    //    public void ReaderExecuted(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
-    //    {
-    //        LogQuery(command);
-    //    }
+        public void ReaderExecuted(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
+        {
+            LogQuery(command);
+        }
 
-    //    public void ScalarExecuting(DbCommand command, DbCommandInterceptionContext<object> interceptionContext)
-    //    {
-    //        LogQuery(command);
-    //    }
+        public void ScalarExecuting(DbCommand command, DbCommandInterceptionContext<object> interceptionContext)
+        {
+            LogQuery(command);
+        }
 
-    //    public void ScalarExecuted(DbCommand command, DbCommandInterceptionContext<object> interceptionContext)
-    //    {
-    //        LogQuery(command);
-    //    }
+        public void ScalarExecuted(DbCommand command, DbCommandInterceptionContext<object> interceptionContext)
+        {
+            LogQuery(command);
+        }
 
-    //    private void LogQuery(DbCommand command)
-    //    {
-    //        Debug.WriteLine($"SQL Query: {command.CommandText}");
-    //    }
-    //}
+        private void LogQuery(DbCommand command)
+        {
+            Debug.WriteLine($"SQL Query: {command.CommandText}");
+        }
+    }
 
-}
+                                               }
+                                                                                                                                                                                                                                                                                                                                                                                          

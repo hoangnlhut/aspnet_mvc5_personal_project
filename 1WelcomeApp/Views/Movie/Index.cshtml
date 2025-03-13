@@ -5,6 +5,10 @@
 }
 
 <main aria-labelledby="title">
+    <div>
+        <a href="@Url.Action("AddOrUpdate", "Movie", new { id = 0 })" class="btn btn-primary">New Movie</a>
+    </div>
+    <br />
 
     @if (Model.ToList().Count <= 0)
     {
@@ -23,7 +27,7 @@
             @foreach (var movie in Model)
             {
                 <tr>
-                    <td> @Html.ActionLink(movie.Name, "Edit", "Movie", new { id = movie.Id }, null)</td>
+                    <td> @Html.ActionLink(movie.Name, "AddOrUpdate", "Movie", new { id = movie.Id }, null)</td>
                     <td>@movie.Genre.Name</td>
                 </tr>
             }
