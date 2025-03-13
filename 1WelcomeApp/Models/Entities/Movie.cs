@@ -15,6 +15,7 @@ namespace _1WelcomeApp.Models
         public string Name { get; set; }
 
         [Display(Name = "Release Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 
         public DateTime DateAdded { get; set; }
@@ -22,7 +23,6 @@ namespace _1WelcomeApp.Models
         [Display(Name = "Number In Stack")]
         public int NumberInStock { get; set; }
 
-        [Required]
         public Genre Genre { get; set; }
 
         [Display(Name = "Genre")]
