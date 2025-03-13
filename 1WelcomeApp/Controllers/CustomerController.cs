@@ -36,47 +36,89 @@ namespace _1WelcomeApp.Controllers
             return View(viewModel);
         }
 
-        // GET: Customer/Edit/5
-        [Route("customer/edit/{id:int}")]
-        public ActionResult Edit(int? id)
+
+        [Route("customer/update/{id:int}")]
+        public ActionResult AddOrUpdate(int? id)
         {
-            var customer = 
-                _context.Customers
-                .SingleOrDefault(c => c.Id == id);
+            var customer = new Customer();
+            if (id > 0)
+            {
+                customer =
+              _context.Customers
+              .SingleOrDefault(c => c.Id == id);
 
-            if (customer == null) return HttpNotFound();
-
+                if (customer == null) return HttpNotFound();
+            }
 
             var viewModel = new CustomerFormViewModel
             {
                 Customer = customer,
                 MembershipTypes = _context.MembershipTypes.ToList()
-            };  
+            };
 
             return View("New", viewModel);
         }
 
-        
-        public ActionResult New()
-        {
-            var membershipTypes = _context.MembershipTypes.ToList();
+        #region Edit and New To become one
+        // GET: Customer/Edit/5
+        [Route("customer/edit/{id:int}")]
+        //public ActionResult Edit(int? id)
+        //{
 
-            var viewModel = new CustomerFormViewModel
-            {
-                MembershipTypes = membershipTypes
-            };
-            return View(viewModel);
-        }
+        //    var customer =
+        //        _context.Customers
+        //        .SingleOrDefault(c => c.Id == id);
+
+        //    if (customer == null) return HttpNotFound();
+
+
+        //    var viewModel = new CustomerFormViewModel
+        //    {
+        //        Customer = customer,
+        //        MembershipTypes = _context.MembershipTypes.ToList()
+        //    };
+
+        //    return View("New", viewModel);
+        //}
+
+
+        //public ActionResult New()
+        //{
+        //    var membershipTypes = _context.MembershipTypes.ToList();
+
+        //    var viewModel = new CustomerFormViewModel
+        //    {
+        //        MembershipTypes = membershipTypes
+        //    };
+        //    return View(viewModel);
+        //}
+        #endregion
 
         [HttpPost]
-        public ActionResult Create(CustomerFormViewModel model)
+        public ActionResult Save(CustomerFormViewModel model)
         {
             if (string.IsNullOrEmpty(model.Customer.Name) || model.Customer.MembershipTypeId <= 0)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad request");
 
-            model.Customer.MembershipType = _context.MembershipTypes.Single(m => m.Id == model.Customer.MembershipTypeId);
+            var customer = model.Customer;
 
-            _context.Customers.AddOrUpdate(model.Customer);
+            if (model.Customer.Id > 0)
+            {
+                 customer = _context.Customers.FirstOrDefault(x => x.Id == model.Customer.Id);
+                if (customer == null) return HttpNotFound();
+
+
+                //in the future we can use Automapper to map ModelDto to data 
+                customer.Name = model.Customer.Name;
+                customer.Birthdate = model.Customer.Birthdate;
+                customer.IsSubsribedToNewsletter = model.Customer.IsSubsribedToNewsletter;
+                customer.MembershipTypeId = model.Customer.MembershipTypeId;
+              
+            }
+
+            customer.MembershipType = _context.MembershipTypes.Single(x => x.Id == model.Customer.MembershipTypeId);
+
+            _context.Customers.AddOrUpdate(customer);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customer");
@@ -90,4 +132,6 @@ namespace _1WelcomeApp.Controllers
         //}
 
     }
+
+   
 }
