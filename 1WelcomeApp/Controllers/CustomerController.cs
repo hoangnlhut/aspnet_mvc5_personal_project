@@ -3,7 +3,9 @@ using _1WelcomeApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -40,12 +42,18 @@ namespace _1WelcomeApp.Controllers
         {
             var customer = 
                 _context.Customers
-                .Include(c => c.MembershipType)
                 .SingleOrDefault(c => c.Id == id);
 
             if (customer == null) return HttpNotFound();
 
-            return View(customer);
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };  
+
+            return View("New", viewModel);
         }
 
         
@@ -53,28 +61,26 @@ namespace _1WelcomeApp.Controllers
         {
             var membershipTypes = _context.MembershipTypes.ToList();
 
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes
             };
             return View(viewModel);
         }
 
-        //// POST: Customer/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+        [HttpPost]
+        public ActionResult Create(CustomerFormViewModel model)
+        {
+            if (string.IsNullOrEmpty(model.Customer.Name) || model.Customer.MembershipTypeId <= 0)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad request");
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+            model.Customer.MembershipType = _context.MembershipTypes.Single(m => m.Id == model.Customer.MembershipTypeId);
+
+            _context.Customers.AddOrUpdate(model.Customer);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customer");
+        }
 
 
         //// GET: Customer/Delete/5
