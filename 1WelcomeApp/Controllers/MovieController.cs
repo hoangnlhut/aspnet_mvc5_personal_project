@@ -79,29 +79,56 @@ namespace _1WelcomeApp.Controllers
             return View("UpdateForm",viewModel);
         }
 
-        [HttpPost]
-        public ActionResult Save(MovieFormViewModel model)
-        {
-            var movie = model.Movie;
-            movie.DateAdded = DateTime.Now;
+        //[HttpPost]
+        //public ActionResult Save(Movie model)
+        //{
+        //    var movie = model.Movie;
+        //    movie.DateAdded = DateTime.Now;
 
+        //    if (movie.Id > 0)
+        //    {
+        //        movie = _context.Movies.Single(x => x.Id == model.Movie.Id);
+        //        movie.Name = model.Movie.Name;
+        //        movie.ReleaseDate = model.Movie.ReleaseDate;
+        //        movie.GenreId = model.Movie.GenreId;
+        //        movie.NumberInStock = model.Movie.NumberInStock;
+
+        //    }
+
+
+        //    movie.Genre = _context.Genres.Single(x => x.Id == model.Movie.GenreId);
+
+        //    _context.Movies.AddOrUpdate(movie);
+        //    _context.SaveChanges();
+        //    return RedirectToAction("Index", "Movie");
+        //}
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            var movieLast = movie;
+            
             if (movie.Id > 0)
             {
-                movie = _context.Movies.Single(x => x.Id == model.Movie.Id);
-                movie.Name = model.Movie.Name;
-                movie.ReleaseDate = model.Movie.ReleaseDate;
-                movie.GenreId = model.Movie.GenreId;
-                movie.NumberInStock = model.Movie.NumberInStock;
-                
+                movieLast = _context.Movies.Single(x => x.Id == movie.Id);
+                movieLast.Name = movie.Name;
+                movieLast.ReleaseDate = movie.ReleaseDate;
+                movieLast.GenreId = movie.GenreId;
+                movieLast.NumberInStock = movie.NumberInStock;
+
+            }
+            else
+            {
+                movieLast.DateAdded = DateTime.Now;
             }
 
+            movieLast.Genre = _context.Genres.Single(x => x.Id == movie.GenreId);
 
-            movie.Genre = _context.Genres.Single(x => x.Id == model.Movie.GenreId);
-
-            _context.Movies.AddOrUpdate(movie);
+            _context.Movies.AddOrUpdate(movieLast);
             _context.SaveChanges();
             return RedirectToAction("Index", "Movie");
         }
+
 
 
 
