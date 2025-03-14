@@ -97,31 +97,42 @@ namespace _1WelcomeApp.Controllers
         [HttpPost]
         public ActionResult Save(CustomerFormViewModel model)
         {
-            if (string.IsNullOrEmpty(model.Customer.Name) || model.Customer.MembershipTypeId <= 0)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad request");
-
-            var customer = model.Customer;
-
-            if (model.Customer.Id > 0)
+            if (ModelState.IsValid)
             {
-                 customer = _context.Customers.FirstOrDefault(x => x.Id == model.Customer.Id);
-                if (customer == null) return HttpNotFound();
+                if (string.IsNullOrEmpty(model.Customer.Name) || model.Customer.MembershipTypeId <= 0)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad request");
+
+                var customer = model.Customer;
+
+                if (model.Customer.Id > 0)
+                {
+                    customer = _context.Customers.FirstOrDefault(x => x.Id == model.Customer.Id);
+                    if (customer == null) return HttpNotFound();
 
 
-                //in the future we can use Automapper to map ModelDto to data 
-                customer.Name = model.Customer.Name;
-                customer.Birthdate = model.Customer.Birthdate;
-                customer.IsSubsribedToNewsletter = model.Customer.IsSubsribedToNewsletter;
-                customer.MembershipTypeId = model.Customer.MembershipTypeId;
-              
+                    //in the future we can use Automapper to map ModelDto to data 
+                    customer.Name = model.Customer.Name;
+                    customer.Birthdate = model.Customer.Birthdate;
+                    customer.IsSubsribedToNewsletter = model.Customer.IsSubsribedToNewsletter;
+                    customer.MembershipTypeId = model.Customer.MembershipTypeId;
+
+                }
+
+                customer.MembershipType = _context.MembershipTypes.Single(x => x.Id == model.Customer.MembershipTypeId);
+
+                _context.Customers.AddOrUpdate(customer);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index", "Customer");
             }
 
-            customer.MembershipType = _context.MembershipTypes.Single(x => x.Id == model.Customer.MembershipTypeId);
+            
 
-            _context.Customers.AddOrUpdate(customer);
-            _context.SaveChanges();
-
-            return RedirectToAction("Index", "Customer");
+            var viewModel = new CustomerFormViewModel() { 
+            Customer = model.Customer,
+              MembershipTypes = _context.MembershipTypes.ToList(),
+            };    
+           return View("New", viewModel);
         }
 
 
