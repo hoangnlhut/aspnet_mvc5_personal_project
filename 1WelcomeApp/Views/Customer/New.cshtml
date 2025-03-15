@@ -8,6 +8,7 @@
 
 @using (Html.BeginForm("Save", "Customer"))
 {
+    @Html.ValidationSummary(true, "Please fix the following errors")
     <div class="form-group">
         @Html.HiddenFor(m => m.Customer.Id)
     </div>
@@ -17,16 +18,16 @@
         @Html.ValidationMessageFor(m => m.Customer.Name)
     </div>
     <br />
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Birthdate)
-        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
-        @Html.ValidationMessageFor(m => m.Customer.Birthdate)
-    </div>
-    <br />
     <div class="dropdown-menu-dark">
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "dropdown-item" })
         @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Birthdate)
+        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+        @Html.ValidationMessageFor(m => m.Customer.Birthdate)
     </div>
     <br />
     <div class="form-check">
