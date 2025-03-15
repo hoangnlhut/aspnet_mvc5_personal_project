@@ -20,6 +20,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Birthdate)
         @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+        @Html.ValidationMessageFor(m => m.Customer.Birthdate)
     </div>
     <br />
     <div class="dropdown-menu-dark">

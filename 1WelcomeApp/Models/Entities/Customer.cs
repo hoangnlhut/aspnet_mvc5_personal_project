@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _1WelcomeApp.Models.CustomValidationModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace _1WelcomeApp.Models
 
         [Display(Name = "Date of Birth")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
     }
 }
