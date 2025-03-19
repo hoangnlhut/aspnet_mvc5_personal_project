@@ -235,6 +235,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomValidationModel\Min18YearsIfAMember.cs" />
+    <Compile Include="Models\CustomValidationModel\ReleaseDateRule.cs" />
     <Compile Include="Models\ViewModel\AccountViewModels.cs" />
     <Compile Include="Models\Entities\Customer.cs" />
     <Compile Include="Models\Entities\Genre.cs" />

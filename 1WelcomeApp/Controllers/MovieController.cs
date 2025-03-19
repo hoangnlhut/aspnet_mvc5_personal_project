@@ -55,50 +55,65 @@ namespace _1WelcomeApp.Controllers
             return View(viewModel);
         }
 
-        [Route("movie/update/{id:int}")]
-        public ActionResult AddOrUpdate(int id)
+        //[Route("movie/update/{id:int}")]
+        public ActionResult Edit(int id)
         {
-            var movie = new Movie();
+            var movie = _context.Movies.Include(x => x.Genre).SingleOrDefault(x => x.Id == id);
 
-            if (id > 0)
+            if (movie == null)
             {
-               movie = _context.Movies.Include(x => x.Genre).SingleOrDefault(x => x.Id == id);
-
-                if (movie == null)
-                {
-                    return HttpNotFound();
-                }
+                return HttpNotFound();
             }
 
-            var viewModel = new MovieFormViewModel
-            {
-                Movie = movie,
+            var movieViewModel = new MovieFormViewModel(movie) {
                 Genres = _context.Genres.ToList()
             };
 
-            return View("UpdateForm",viewModel);
+
+            return View("UpdateForm", movieViewModel);
+        }
+
+        public ActionResult Add()
+        {
+            var movie = new MovieFormViewModel()
+            {
+                Genres = _context.Genres.ToList()
+            };
+
+
+            return View("UpdateForm", movie);
         }
 
         [HttpPost]
-        public ActionResult Save(Movie movie)
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(MovieFormViewModel model)
         {
-            var movieLast = movie;
-            
-            if (movie.Id > 0)
+            if (!ModelState.IsValid)
             {
-                movieLast = _context.Movies.Single(x => x.Id == movie.Id);
-                movieLast.Name = movie.Name;
-                movieLast.ReleaseDate = movie.ReleaseDate;
-                movieLast.GenreId = movie.GenreId;
-                movieLast.NumberInStock = movie.NumberInStock;
+                model.Genres = _context.Genres.ToList();
+                return View("UpdateForm", model);
+            }
 
+            var movieLast = new Movie();
+
+            if (model.Id > 0)
+            {
+                movieLast = _context.Movies.FirstOrDefault(x => x.Id == model.Id);
+                if (movieLast == null )
+                {
+                    return HttpNotFound();
+                }
             }
             else
             {
                 movieLast.DateAdded = DateTime.Now;
             }
 
-            movieLast.Genre = _context.Genres.Single(x => x.Id == movie.GenreId);
+            movieLast.Name = model.Name;
+            movieLast.ReleaseDate = model.ReleaseDate.Value;
+            movieLast.GenreId = model.GenreId;
+            movieLast.NumberInStock = model.NumberInStock.Value;
+            movieLast.Genre = _context.Genres.Single(x => x.Id == model.GenreId);
 
             _context.Movies.AddOrUpdate(movieLast);
             _context.SaveChanges();
