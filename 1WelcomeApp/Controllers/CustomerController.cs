@@ -95,6 +95,7 @@ namespace _1WelcomeApp.Controllers
         #endregion
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(CustomerFormViewModel model)
         {
             if (ModelState.IsValid)
