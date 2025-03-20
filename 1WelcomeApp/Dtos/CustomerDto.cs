@@ -10,6 +10,7 @@ namespace _1WelcomeApp.Dtos
 {
     public class CustomerDto
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = "Please enter customer's name")]
         [StringLength(255)]
         public string Name { get; set; }
@@ -21,6 +22,6 @@ namespace _1WelcomeApp.Dtos
 
         [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
-        public int Id { get; set; }
+        
     }
 }
