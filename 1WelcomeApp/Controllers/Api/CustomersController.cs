@@ -19,9 +19,9 @@ namespace _1WelcomeApp.Controllers.Api
 
         //GET /api/customers
         [HttpGet]
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            return Ok(_context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>));
         }
 
         //GET /api/customers/1
@@ -30,7 +30,8 @@ namespace _1WelcomeApp.Controllers.Api
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customer == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+               return NotFound();
+
             return Ok(Mapper.Map<Customer, CustomerDto>(customer));
         }
 
@@ -53,33 +54,37 @@ namespace _1WelcomeApp.Controllers.Api
 
         //PUT /api/customers/1
         [HttpPut]
-        public void UpdateCustomer(int id, CustomerDto customerDto)
+        public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
+
+            customerDto.Id = id;
 
             Mapper.Map(customerDto, customerInDb);
 
             _context.SaveChanges();
-            return;
+            return Ok();
         }
 
         //DELETE /api/customers/1
         [HttpDelete]    
-        public void DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomer(int id)
         {
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
+
+            return Ok();
         }
     }
 }
