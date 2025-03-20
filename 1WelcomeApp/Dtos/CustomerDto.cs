@@ -21,5 +21,6 @@ namespace _1WelcomeApp.Dtos
 
         [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
+        public int Id { get; set; }
     }
 }
