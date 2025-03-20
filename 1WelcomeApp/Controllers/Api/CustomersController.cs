@@ -26,20 +26,20 @@ namespace _1WelcomeApp.Controllers.Api
 
         //GET /api/customers/1
         [HttpGet]
-        public CustomerDto GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customer == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            return Mapper.Map<Customer, CustomerDto>(customer);
+            return Ok(Mapper.Map<Customer, CustomerDto>(customer));
         }
 
         //POST /api/customers
         [HttpPost]
-        public CustomerDto CreateCustomer(CustomerDto customer)
+        public IHttpActionResult CreateCustomer(CustomerDto customer)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var customerEntity = Mapper.Map<CustomerDto, Customer>(customer);
 
@@ -48,7 +48,7 @@ namespace _1WelcomeApp.Controllers.Api
 
             customer.Id = customerEntity.Id;
 
-            return customer;
+            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customer);
         }
 
         //PUT /api/customers/1
