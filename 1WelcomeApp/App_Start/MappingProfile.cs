@@ -1,6 +1,7 @@
 ﻿using _1WelcomeApp.Dtos;
 using _1WelcomeApp.Models;
 using AutoMapper;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,15 @@ namespace _1WelcomeApp.App_Start
     {
         protected override void Configure()
         {
-            CreateMap<CustomerDto, Customer>();
+            //Dto To Domain
+            CreateMap<CustomerDto, Customer>().ForMember(c => c.Id, opt => opt.Ignore());
+            CreateMap<MovieDto, Movie>().ForMember(m => m.Id, opt => opt.Ignore());
+
+            //Domain to Dto
             CreateMap<Customer, CustomerDto>();
+            CreateMap<Movie, MovieDto>();
+
+
         }
     }
 }

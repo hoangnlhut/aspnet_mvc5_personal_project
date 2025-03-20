@@ -64,8 +64,6 @@ namespace _1WelcomeApp.Controllers.Api
             if (customerInDb == null)
                 return NotFound();
 
-            customerDto.Id = id;
-
             Mapper.Map(customerDto, customerInDb);
 
             _context.SaveChanges();
