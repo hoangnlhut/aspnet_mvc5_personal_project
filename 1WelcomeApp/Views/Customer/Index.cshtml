@@ -15,11 +15,12 @@
     }
     else
     {
-        <table class="table table-bordered table-hover">
+        <table id="customers" class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Customer</th>
                     <th>Membership Type</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
 
@@ -32,14 +33,38 @@
 
                     @if (customer.MembershipType != null)
                     {
-                       <td>@customer.MembershipType.Name</td>
+                        <td>@customer.MembershipType.Name</td>
                     }
                     else
                     {
                         <td>Unknown</td>
                     }
+
+                    <td>
+                        <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
+                    </td>
                 </tr>
             }
         </table>
     }
 </main>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#customers .js-delete").on("click", function() {
+                if (confirm("Are you sure to delete this customer?")) {
+                    $.ajax({
+                        url: "/api/customers/" + $(this).attr("data-customer-id"),
+                        method: "DELETE",
+                        success: function () {
+                            console.log("Delete successfully")
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
