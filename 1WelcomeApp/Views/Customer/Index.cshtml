@@ -53,17 +53,20 @@
 {
     <script>
         $(document).ready(function () {
-            $("#customers .js-delete").on("click", function() {
-                if (confirm("Are you sure to delete this customer?")) {
-                    $.ajax({
-                        url: "/api/customers/" + $(this).attr("data-customer-id"),
-                        method: "DELETE",
-                        success: function () {
-                            console.log("Delete successfully")
-                            location.reload();
-                        }
-                    });
-                }
+            $("#customers .js-delete").on("click", function () {
+
+                bootbox.confirm("Are you sure to delete this customer?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/customers/" + $(this).attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function () {
+                                console.log("Delete successfully")
+                                location.reload();
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>
