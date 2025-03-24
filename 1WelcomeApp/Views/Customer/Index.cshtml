@@ -53,6 +53,9 @@
 {
     <script>
         $(document).ready(function () {
+            //use datatable plugin
+            $("#customers").DataTable();
+
             $("#customers").on("click", ".js-delete", function () {
 
                 bootbox.confirm("Are you sure to delete this customer?", function (result) {
