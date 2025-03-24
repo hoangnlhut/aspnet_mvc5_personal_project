@@ -28,12 +28,13 @@ namespace _1WelcomeApp.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            CustomerViewModel viewModel = new CustomerViewModel
-            {
-                Customers = _context.Customers.Include(c => c.MembershipType).ToList(),
-            };
+            //CustomerViewModel viewModel = new CustomerViewModel
+            //{
+            //    Customers = _context.Customers.Include(c => c.MembershipType).ToList(),
+            //};
 
-            return View(viewModel);
+            //return View(viewModel);
+            return View();
         }
 
 

@@ -20,6 +20,7 @@ namespace _1WelcomeApp.App_Start
             //Domain to Dto
             CreateMap<Customer, CustomerDto>();
             CreateMap<Movie, MovieDto>();
+            CreateMap<MembershipType, MembershipTypeDto>();
 
 
         }

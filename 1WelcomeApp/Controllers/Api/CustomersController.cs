@@ -4,7 +4,7 @@ using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
+using System.Data.Entity;
 using System.Web.Http;
 
 namespace _1WelcomeApp.Controllers.Api
@@ -18,10 +18,15 @@ namespace _1WelcomeApp.Controllers.Api
         }
 
         //GET /api/customers
-        [HttpGet]
+        //[HttpGet]
         public IHttpActionResult GetCustomers()
         {
-            return Ok(_context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>));
+            var customerDto = _context.Customers
+                .Include(x => x.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);
+
+            return Ok(customerDto);
         }
 
         //GET /api/customers/1
@@ -37,19 +42,19 @@ namespace _1WelcomeApp.Controllers.Api
 
         //POST /api/customers
         [HttpPost]
-        public IHttpActionResult CreateCustomer(CustomerDto customer)
+        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var customerEntity = Mapper.Map<CustomerDto, Customer>(customer);
+            var customerEntity = Mapper.Map<CustomerDto, Customer>(customerDto);
 
             _context.Customers.Add(customerEntity);
             _context.SaveChanges();
 
-            customer.Id = customerEntity.Id;
+            customerDto.Id = customerEntity.Id;
 
-            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customer);
+            return Created(new Uri(Request.RequestUri + "/" + customerDto.Id), customerDto);
         }
 
         //PUT /api/customers/1

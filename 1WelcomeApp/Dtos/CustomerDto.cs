@@ -16,7 +16,7 @@ namespace _1WelcomeApp.Dtos
         public string Name { get; set; }
 
         public bool IsSubsribedToNewsletter { get; set; }
-
+        public MembershipTypeDto MembershipType { get; set; }
 
         public byte MembershipTypeId { get; set; }
 
