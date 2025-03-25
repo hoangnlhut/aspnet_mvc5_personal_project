@@ -17,6 +17,7 @@ namespace _1WelcomeApp.Dtos
         public DateTime DateAdded { get; set; }
 
         public int NumberInStock { get; set; }
+        public GenreDto Genre { get; set; }
 
         public byte GenreId { get; set; }
 

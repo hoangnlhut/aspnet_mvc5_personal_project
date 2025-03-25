@@ -25,9 +25,10 @@ namespace _1WelcomeApp.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            var movies = _context.Movies.Include(x => x.Genre).ToList();
+            //var movies = _context.Movies.Include(x => x.Genre).ToList();
 
-            return View(movies);
+            //return View(movies);
+            return View();
         }
 
         // GET: Movie/Random

@@ -21,6 +21,7 @@ namespace _1WelcomeApp.App_Start
             CreateMap<Customer, CustomerDto>();
             CreateMap<Movie, MovieDto>();
             CreateMap<MembershipType, MembershipTypeDto>();
+            CreateMap<Genre, GenreDto>();
 
 
         }

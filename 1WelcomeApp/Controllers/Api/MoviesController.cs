@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Data.Entity;
 using System.Web.Http;
 
 namespace _1WelcomeApp.Controllers.Api
@@ -19,10 +19,15 @@ namespace _1WelcomeApp.Controllers.Api
         }
 
         //GET /api/movies
-        [HttpGet]
+        //[HttpGet]
         public IHttpActionResult GetMovies()
         {
-            return Ok(_context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>));
+            var movieDto = _context.Movies
+                .Include(x => x.Genre)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
+
+            return Ok(movieDto);
         }
 
         //GET /api/movies/1
