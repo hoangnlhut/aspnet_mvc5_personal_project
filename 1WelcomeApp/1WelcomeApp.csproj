@@ -276,6 +276,10 @@
     <Compile Include="Migrations\202503260450451_SeedUserAndRole.Designer.cs">
       <DependentUpon>202503260450451_SeedUserAndRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202503260755194_AddDrivingLicenserForUser.cs" />
+    <Compile Include="Migrations\202503260755194_AddDrivingLicenserForUser.Designer.cs">
+      <DependentUpon>202503260755194_AddDrivingLicenserForUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomValidationModel\Min18YearsIfAMember.cs" />
     <Compile Include="Models\CustomValidationModel\ReleaseDateRule.cs" />
@@ -611,9 +615,9 @@
     <Content Include="Views\Movie\UpdateForm.cshtml" />
     <Content Include="Views\Shared\_NavBarPartial.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Movie\List.cshtml" />
     <Content Include="Views\Customer\New.cshtml" />
     <Content Include="Views\Movie\ListOnlyRead.cshtml" />
+    <Content Include="Views\Movie\List.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -688,6 +692,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202503260450451_SeedUserAndRole.resx">
       <DependentUpon>202503260450451_SeedUserAndRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202503260755194_AddDrivingLicenserForUser.resx">
+      <DependentUpon>202503260755194_AddDrivingLicenserForUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
