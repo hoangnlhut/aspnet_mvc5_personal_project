@@ -272,6 +272,10 @@
     <Compile Include="Migrations\202503131009417_RemoveRequiredGenreInMovie.Designer.cs">
       <DependentUpon>202503131009417_RemoveRequiredGenreInMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202503260450451_SeedUserAndRole.cs" />
+    <Compile Include="Migrations\202503260450451_SeedUserAndRole.Designer.cs">
+      <DependentUpon>202503260450451_SeedUserAndRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomValidationModel\Min18YearsIfAMember.cs" />
     <Compile Include="Models\CustomValidationModel\ReleaseDateRule.cs" />
@@ -607,8 +611,9 @@
     <Content Include="Views\Movie\UpdateForm.cshtml" />
     <Content Include="Views\Shared\_NavBarPartial.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Movie\Index.cshtml" />
+    <Content Include="Views\Movie\List.cshtml" />
     <Content Include="Views\Customer\New.cshtml" />
+    <Content Include="Views\Movie\ListOnlyRead.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -680,6 +685,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202503131009417_RemoveRequiredGenreInMovie.resx">
       <DependentUpon>202503131009417_RemoveRequiredGenreInMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202503260450451_SeedUserAndRole.resx">
+      <DependentUpon>202503260450451_SeedUserAndRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

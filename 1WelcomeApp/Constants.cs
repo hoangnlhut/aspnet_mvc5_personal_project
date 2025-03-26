@@ -13,8 +13,8 @@ namespace _1WelcomeApp
         Annual = 4
     }
 
-    public class Constants
+    public static class UserRoles
     {
-       
+       public const string CanManageMovies = "CanManageMovies";
     }
 }

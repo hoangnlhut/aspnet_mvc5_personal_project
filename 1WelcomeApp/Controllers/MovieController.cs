@@ -28,7 +28,11 @@ namespace _1WelcomeApp.Controllers
             //var movies = _context.Movies.Include(x => x.Genre).ToList();
 
             //return View(movies);
-            return View();
+
+            if(User.IsInRole(UserRoles.CanManageMovies))
+                return View("List");
+
+            return View("ListOnlyRead");
         }
 
         // GET: Movie/Random
@@ -57,6 +61,8 @@ namespace _1WelcomeApp.Controllers
         }
 
         //[Route("movie/update/{id:int}")]
+
+        [Authorize(Roles = UserRoles.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.Include(x => x.Genre).SingleOrDefault(x => x.Id == id);
@@ -74,6 +80,7 @@ namespace _1WelcomeApp.Controllers
             return View("UpdateForm", movieViewModel);
         }
 
+        [Authorize(Roles = UserRoles.CanManageMovies)]
         public ActionResult Add()
         {
             var movie = new MovieFormViewModel()
