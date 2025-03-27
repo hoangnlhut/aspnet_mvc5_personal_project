@@ -54,9 +54,9 @@ namespace _1WelcomeApp
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1224019819087400",
+               appSecret: "a1fa1b1586d53014f330c53b75208a60");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
