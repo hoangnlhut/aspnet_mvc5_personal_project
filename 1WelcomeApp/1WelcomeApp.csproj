@@ -280,6 +280,14 @@
     <Compile Include="Migrations\202503260755194_AddDrivingLicenserForUser.Designer.cs">
       <DependentUpon>202503260755194_AddDrivingLicenserForUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202503271140540_AddPhoneToUser.cs" />
+    <Compile Include="Migrations\202503271140540_AddPhoneToUser.Designer.cs">
+      <DependentUpon>202503271140540_AddPhoneToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202503271146091_AddPhoneToUser1.cs" />
+    <Compile Include="Migrations\202503271146091_AddPhoneToUser1.Designer.cs">
+      <DependentUpon>202503271146091_AddPhoneToUser1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomValidationModel\Min18YearsIfAMember.cs" />
     <Compile Include="Models\CustomValidationModel\ReleaseDateRule.cs" />
@@ -695,6 +703,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202503260755194_AddDrivingLicenserForUser.resx">
       <DependentUpon>202503260755194_AddDrivingLicenserForUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202503271140540_AddPhoneToUser.resx">
+      <DependentUpon>202503271140540_AddPhoneToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202503271146091_AddPhoneToUser1.resx">
+      <DependentUpon>202503271146091_AddPhoneToUser1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
