@@ -10,6 +10,7 @@ using System.Data.Entity.Migrations;
 
 namespace _1WelcomeApp.Controllers
 {
+    [Authorize(Roles = UserRoles.CanManageMovies)]
     public class MovieController : Controller
     {
         private ApplicationDbContext _context;
@@ -29,10 +30,12 @@ namespace _1WelcomeApp.Controllers
 
             //return View(movies);
 
-            if(User.IsInRole(UserRoles.CanManageMovies))
-                return View("List");
+            //if(User.IsInRole(UserRoles.CanManageMovies))
+            //    return View("List");
 
-            return View("ListOnlyRead");
+            //return View("ListOnlyRead");
+
+            return View("List");
         }
 
         // GET: Movie/Random
@@ -61,8 +64,6 @@ namespace _1WelcomeApp.Controllers
         }
 
         //[Route("movie/update/{id:int}")]
-
-        [Authorize(Roles = UserRoles.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.Include(x => x.Genre).SingleOrDefault(x => x.Id == id);
@@ -80,7 +81,6 @@ namespace _1WelcomeApp.Controllers
             return View("UpdateForm", movieViewModel);
         }
 
-        [Authorize(Roles = UserRoles.CanManageMovies)]
         public ActionResult Add()
         {
             var movie = new MovieFormViewModel()
