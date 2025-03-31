@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using _1WelcomeApp.Models.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace _1WelcomeApp.Models
@@ -9,6 +10,7 @@ namespace _1WelcomeApp.Models
         public DbSet<Movie> Movies { get; set; } 
         public DbSet<MembershipType> MembershipTypes { get; set; }
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
