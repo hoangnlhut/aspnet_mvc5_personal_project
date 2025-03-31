@@ -1,5 +1,6 @@
 ﻿using _1WelcomeApp.Dtos;
 using _1WelcomeApp.Models;
+using _1WelcomeApp.Models.Entities;
 using AutoMapper;
 using Microsoft.Ajax.Utilities;
 using System;
@@ -16,6 +17,11 @@ namespace _1WelcomeApp.App_Start
             //Dto To Domain
             CreateMap<CustomerDto, Customer>().ForMember(c => c.Id, opt => opt.Ignore());
             CreateMap<MovieDto, Movie>().ForMember(m => m.Id, opt => opt.Ignore());
+            CreateMap<NewRentalDto, Rental>()
+                .ForMember(c => c.Id, opt => opt.Ignore())
+                .ForMember(c => c.Movie, opt => opt.Ignore())
+                .ForMember(c => c.Customer, opt => opt.Ignore())
+                ;
 
             //Domain to Dto
             CreateMap<Customer, CustomerDto>();

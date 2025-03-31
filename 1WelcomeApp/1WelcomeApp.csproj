@@ -213,6 +213,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\MappingProfile.cs" />
+    <Compile Include="Controllers\Api\NewRentalsController.cs" />
+    <Compile Include="Dtos\NewRentalDto.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
@@ -304,10 +306,15 @@
     <Compile Include="Migrations\202503271146091_AddPhoneToUser1.Designer.cs">
       <DependentUpon>202503271146091_AddPhoneToUser1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202503311324599_AddRentalTable.cs" />
+    <Compile Include="Migrations\202503311324599_AddRentalTable.Designer.cs">
+      <DependentUpon>202503311324599_AddRentalTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomValidationModel\Min18YearsIfAMember.cs" />
     <Compile Include="Models\CustomValidationModel\ReleaseDateRule.cs" />
     <Compile Include="Models\Entities\ApplicationUser.cs" />
+    <Compile Include="Models\Entities\Rental.cs" />
     <Compile Include="Models\ViewModel\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\Entities\Customer.cs" />
     <Compile Include="Models\Entities\Genre.cs" />
@@ -734,6 +741,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202503271146091_AddPhoneToUser1.resx">
       <DependentUpon>202503271146091_AddPhoneToUser1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202503311324599_AddRentalTable.resx">
+      <DependentUpon>202503311324599_AddRentalTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
