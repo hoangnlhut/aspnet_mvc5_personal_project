@@ -310,6 +310,10 @@
     <Compile Include="Migrations\202503311324599_AddRentalTable.Designer.cs">
       <DependentUpon>202503311324599_AddRentalTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202503311352517_AddNumberAvailableFieldInMovie.cs" />
+    <Compile Include="Migrations\202503311352517_AddNumberAvailableFieldInMovie.Designer.cs">
+      <DependentUpon>202503311352517_AddNumberAvailableFieldInMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomValidationModel\Min18YearsIfAMember.cs" />
     <Compile Include="Models\CustomValidationModel\ReleaseDateRule.cs" />
@@ -744,6 +748,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202503311324599_AddRentalTable.resx">
       <DependentUpon>202503311324599_AddRentalTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202503311352517_AddNumberAvailableFieldInMovie.resx">
+      <DependentUpon>202503311352517_AddNumberAvailableFieldInMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -21,5 +21,7 @@ namespace _1WelcomeApp.Dtos
 
         public byte GenreId { get; set; }
 
+        public int? NumberAvailable { get; set; }
+
     }
 }

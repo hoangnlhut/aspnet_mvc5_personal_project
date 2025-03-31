@@ -25,5 +25,7 @@ namespace _1WelcomeApp.Models
         
         public byte GenreId { get; set; }
 
+        public int? NumberAvailable { get; set; }
+
     }
 }
