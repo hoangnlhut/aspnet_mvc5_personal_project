@@ -14,7 +14,9 @@ namespace _1WelcomeApp
                         "~/Scripts/Datatables/jquery.dataTables.js",
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
-                        "~/Scripts/Datatables/dataTables.bootstrap4.js"));
+                        "~/Scripts/Datatables/dataTables.bootstrap4.js",
+                        "~/Scripts/typeahead.bundle.js"
+                        ));
             
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -31,7 +33,9 @@ namespace _1WelcomeApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-lumen.css",
                       "~/Content/site.css",
-                      "~/Content/DataTables/css/dataTables.bootstrap4.css"));
+                      "~/Content/DataTables/css/dataTables.bootstrap4.css",
+                      "~/Content/typeahead.css"
+                      ));
         }
     }
 }
