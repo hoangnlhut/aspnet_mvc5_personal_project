@@ -314,6 +314,10 @@
     <Compile Include="Migrations\202503311352517_AddNumberAvailableFieldInMovie.Designer.cs">
       <DependentUpon>202503311352517_AddNumberAvailableFieldInMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504010255267_UpdateNumberAvailableDataInMovieTable.cs" />
+    <Compile Include="Migrations\202504010255267_UpdateNumberAvailableDataInMovieTable.Designer.cs">
+      <DependentUpon>202504010255267_UpdateNumberAvailableDataInMovieTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomValidationModel\Min18YearsIfAMember.cs" />
     <Compile Include="Models\CustomValidationModel\ReleaseDateRule.cs" />
@@ -751,6 +755,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202503311352517_AddNumberAvailableFieldInMovie.resx">
       <DependentUpon>202503311352517_AddNumberAvailableFieldInMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504010255267_UpdateNumberAvailableDataInMovieTable.resx">
+      <DependentUpon>202504010255267_UpdateNumberAvailableDataInMovieTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
