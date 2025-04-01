@@ -16,7 +16,10 @@ namespace _1WelcomeApp.App_Start
         {
             //Dto To Domain
             CreateMap<CustomerDto, Customer>().ForMember(c => c.Id, opt => opt.Ignore());
-            CreateMap<MovieDto, Movie>().ForMember(m => m.Id, opt => opt.Ignore());
+            CreateMap<MovieDto, Movie>()
+                .ForMember(m => m.Id, opt => opt.Ignore())
+                .ForMember(m => m.NumberAvailable, opt => opt.Ignore())
+                ;
             CreateMap<NewRentalDto, Rental>()
                 .ForMember(c => c.Id, opt => opt.Ignore())
                 .ForMember(c => c.Movie, opt => opt.Ignore())

@@ -27,23 +27,37 @@ namespace _1WelcomeApp.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var customer = _context.Customers.FirstOrDefault(c => c.Id == rentalDto.CustomerId);
+            //This is pesimesstic approach with many validation checks
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == rentalDto.CustomerId);
             if (customer == null) return BadRequest("Invalid Customer");
 
-            foreach (var movieId in rentalDto.MovieIds)
-            {
-               var movie =  _context.Movies.FirstOrDefault(m => m.Id == movieId);
-                if (movie == null) return BadRequest("Invalid movie");
+            if (rentalDto.MovieIds.Count == 0)
+                return BadRequest("No movie Ids have been given.");
 
+            var movies = _context.Movies.Where(m => rentalDto.MovieIds.Contains(m.Id)).ToList();
+
+            if (movies.Count != rentalDto.MovieIds.Count)
+                return BadRequest("One or more Movies are invalid");
+
+            foreach (var movieSingle in movies)
+            {
+                if (movieSingle.NumberAvailable == 0)
+                {
+                    return BadRequest("Movie is not available");
+                }
+
+                movieSingle.NumberAvailable--;
 
                 var rentalEntity = Mapper.Map<NewRentalDto, Rental>(rentalDto);
 
 
-                rentalEntity.Movie = movie;
+                rentalEntity.Movie = movieSingle;
                 rentalEntity.Customer = customer;
                 rentalEntity.DateRented = DateTime.Now;
 
                 _context.Rentals.Add(rentalEntity);
+
+                
             }
            
             _context.SaveChanges();

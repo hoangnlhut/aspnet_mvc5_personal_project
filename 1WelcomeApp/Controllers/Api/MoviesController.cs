@@ -51,6 +51,7 @@ namespace _1WelcomeApp.Controllers.Api
             movie.DateAdded = DateTime.Now;
 
             var movieEntity = Mapper.Map<MovieDto, Movie>(movie);
+            movieEntity.NumberAvailable = movieEntity.NumberInStock;
 
             _context.Movies.Add(movieEntity);
             _context.SaveChanges();
