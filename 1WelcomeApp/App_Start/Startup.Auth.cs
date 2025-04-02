@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using _1WelcomeApp.Models;
+using System.Configuration;
 
 namespace _1WelcomeApp
 {
@@ -55,8 +56,8 @@ namespace _1WelcomeApp
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "1224019819087400",
-               appSecret: "a1fa1b1586d53014f330c53b75208a60");
+               appId: ConfigurationManager.AppSettings["FacebookAppId"],
+               appSecret: ConfigurationManager.AppSettings["FacebookAppSecret"]);
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
