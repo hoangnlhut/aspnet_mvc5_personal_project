@@ -48,7 +48,7 @@ namespace _1WelcomeApp.Controllers.Api
 
                 movieSingle.NumberAvailable--;
 
-                var rentalEntity = Mapper.Map<NewRentalDto, Rental>(rentalDto);
+                var rentalEntity = new Rental();
 
 
                 rentalEntity.Movie = movieSingle;

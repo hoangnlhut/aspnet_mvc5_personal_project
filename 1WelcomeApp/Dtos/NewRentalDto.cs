@@ -6,7 +6,7 @@ namespace _1WelcomeApp.Dtos
 {
     public class NewRentalDto
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
 
         [Required]
         [Display(Name = "Customer")]
@@ -16,10 +16,10 @@ namespace _1WelcomeApp.Dtos
         [Display(Name = "Movies")]
         public List<int> MovieIds { get; set; }
 
-        [Display(Name = "Date of Rent")]
-        public DateTime DateRented { get; set; }
+        //[Display(Name = "Date of Rent")]
+        //public DateTime DateRented { get; set; }
 
-        [Display(Name = "Date of Return")]
-        public DateTime? DateReturned { get; set; }
+        //[Display(Name = "Date of Return")]
+        //public DateTime? DateReturned { get; set; }
     }
 }
