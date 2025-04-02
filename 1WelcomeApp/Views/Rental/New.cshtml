@@ -98,10 +98,10 @@
                     data: viemModel
                 })
                     .done(function () {
-                        alert('Rental created successfully');
+                        toastr.success('Rental created successfully');
                     })
                     .fail(function () {
-                        alert('Failed to create rental');
+                        toastr.error('Failed to create rental');
                     });
             });
 

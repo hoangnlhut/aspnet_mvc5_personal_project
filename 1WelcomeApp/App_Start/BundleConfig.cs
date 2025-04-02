@@ -15,7 +15,8 @@ namespace _1WelcomeApp
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/Datatables/dataTables.bootstrap4.js",
-                        "~/Scripts/typeahead.bundle.js"
+                        "~/Scripts/typeahead.bundle.js",
+                        "~/Scripts/toastr.js"
                         ));
             
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -34,6 +35,7 @@ namespace _1WelcomeApp
                       "~/Content/bootstrap-lumen.css",
                       "~/Content/site.css",
                       "~/Content/DataTables/css/dataTables.bootstrap4.css",
+                      "~/Content/toastr.css",
                       "~/Content/typeahead.css"
                       ));
         }
