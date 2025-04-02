@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "checkJs": true
+  },
+  "include": [
+    "./**/*",
+    "~/Scripts/jquery-{version}.js",
+    "~/Scripts/typeahead.bundle.js",
+    "~/Scripts/bootstrap.js"
+  ]
+}

@@ -20,14 +20,19 @@ namespace _1WelcomeApp.Controllers.Api
 
         //GET /api/movies
         //[HttpGet]
-        public IHttpActionResult GetMovies()
+        public IHttpActionResult GetMovies(string query = null)
         {
-            var movieDto = _context.Movies
-                .Include(x => x.Genre)
-                .ToList()
-                .Select(Mapper.Map<Movie, MovieDto>);
+            var moviesQuery = _context.Movies
+               .Include(m => m.Genre)
+               .Where(m => m.NumberAvailable > 0);
 
-            return Ok(movieDto);
+            if (!String.IsNullOrWhiteSpace(query))
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+
+
+            return Ok(moviesQuery
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>));
         }
 
         //GET /api/movies/1
