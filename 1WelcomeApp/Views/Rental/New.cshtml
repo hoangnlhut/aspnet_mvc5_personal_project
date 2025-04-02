@@ -10,14 +10,14 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" type="text" class="form-group">
+            <input name="customer" id="customer" data-rule-validCustomer="true" required type="text" class="form-group">
         </div>
     </div>
 
     <div class="form-group">
         <label>Movies</label>
         <div class="tt-container">
-            <input id="movie" type="text" class="form-group">
+            <input name="movie" id="movie" data-rule-atLeastOneMovie="true"  required type="text" class="form-group">
         </div>
     </div>
 
@@ -27,7 +27,7 @@
             </ul>
         </div>
     </div>
-    
+
 
     <br />
 
@@ -37,6 +37,7 @@
 
 @section scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
 
@@ -90,20 +91,47 @@
                     viemModel.movieIds.push(movie.id);
                 });
 
-            $('#newRental').submit(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: '../api/newRentals',
-                    method: 'POST',
-                    data: viemModel
-                })
-                    .done(function () {
-                        toastr.success('Rental created successfully');
-                    })
-                    .fail(function () {
-                        toastr.error('Failed to create rental');
-                    });
-            });
+
+            /* Validation */
+            $.validator.addMethod('validCustomer', function () {
+                return viemModel.customerId && viemModel.customerId > 0;
+            }, 'Please select a valid customer');
+
+            $.validator.addMethod('atLeastOneMovie', function () {
+                return viemModel.movieIds.length > 0;
+            }, 'Please select a valid movie');
+
+
+
+            var validator =  $('#newRental').validate(
+                {
+                    submitHandler: function () {
+                        $.ajax({
+                            url: '../api/newRentals',
+                            method: 'POST',
+                            data: viemModel
+                        })
+                            .done(function () {
+                                toastr.success('Rental created successfully');
+
+                                $('#customer').typeahead("val", "");
+                                $('#movie').typeahead("val", "");
+                                $('#moviesList').empty();
+
+                                viemModel = {
+                                    movieIds: []
+                                };
+
+                                validator.resetForm();
+                            })
+                            .fail(function () {
+                                toastr.error('Failed to create rental');
+                            });
+
+                        return false;
+                    }
+                });
+            /* End Validation */
 
         })
     </script>
