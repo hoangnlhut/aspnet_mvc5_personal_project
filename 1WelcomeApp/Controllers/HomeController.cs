@@ -16,6 +16,8 @@ namespace _1WelcomeApp.Controllers
 
         public ActionResult About()
         {
+            return HttpNotFound();
+
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -23,6 +25,7 @@ namespace _1WelcomeApp.Controllers
 
         public ActionResult Contact()
         {
+            throw new Exception();
             ViewBag.Message = "Your contact page.";
 
             return View();

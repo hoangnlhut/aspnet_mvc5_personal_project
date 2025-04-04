@@ -348,6 +348,8 @@
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
+    <Content Include="500.html" />
     <Content Include="App_Data\aspnet-1WelcomeApp-20250305024942.mdf" />
     <Content Include="App_Data\aspnet-1WelcomeApp-20250305024942_log.ldf">
       <DependentUpon>aspnet-1WelcomeApp-20250305024942.mdf</DependentUpon>
